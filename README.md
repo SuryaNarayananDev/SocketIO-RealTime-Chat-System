@@ -20,6 +20,7 @@ The system is designed to deliver a responsive and seamless communication experi
 * Material UI (MUI)
 * Axios
 * Socket.IO Client
+* Motion
 
 ### Server
 
@@ -60,13 +61,13 @@ MongoDB Atlas
 
 | S.No | Task                           | Status        |
 | ---- | ------------------------------ | ------------- |
-| 1    | Authentication & Authorization | ⬜ Not Started |
+| 1    | Authentication & Authorization | 🟨 In Progress |
 | 2    | One-to-One Chat                | ⬜ Not Started |
 | 3    | Available User Status          | ⬜ Not Started |
 | 4    | Create Group                   | ⬜ Not Started |
 | 5    | One-to-Many Chat               | ⬜ Not Started |
 | 6    | Edit Message                   | ⬜ Not Started |
-| 7    | Toggle Theme                   | ⬜ Not Started |
+| 7    | Toggle Theme                   | 🟩 Completed |
 | 8    | Chat Back-Up                   | ⬜ Not Started |
 | 9    | One-to-One Video Calls         | ⬜ Not Started |
 | 10   | One-to-Many Video Calls        | ⬜ Not Started |
