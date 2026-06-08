@@ -9,7 +9,7 @@ import DarkModeIcon from '@mui/icons-material/DarkMode';
 import ConversationItem from './ConversationItem';
 import SearchIcon from '@mui/icons-material/Search';
 import SunnyIcon from '@mui/icons-material/Sunny';
-
+import { useNavigate } from 'react-router';
 function SideBar({ theme, setTheme }) {
 
   const [convo ]=useState([
@@ -60,6 +60,9 @@ function SideBar({ theme, setTheme }) {
       timeStamp:"today"
     }
   ])
+
+  const navigate = useNavigate();
+
   return (
     <div id={theme?"bg-dark":"bg-light"} className="side-bar">
         <div  id={theme?'bg-component-dark':'bg-component-light'} className='side-bar-header' >
@@ -70,13 +73,13 @@ function SideBar({ theme, setTheme }) {
           </div>
 
           <div id={theme?"dark-text":"light-text"} className='header-icons'>
-            <IconButton>
+            <IconButton onClick={()=>{navigate('users')}}>
               <PersonAddIcon className='large-icon'/>
             </IconButton>
-            <IconButton>
+            <IconButton onClick={()=>{navigate('groups')}}>
               <GroupAddIcon className='large-icon'/>
             </IconButton>
-            <IconButton>
+            <IconButton onClick={()=>{navigate('create-group')}}>
               <AddBoxIcon className='large-icon'/>
             </IconButton>
             <IconButton onClick={()=>{setTheme(!theme)}}>

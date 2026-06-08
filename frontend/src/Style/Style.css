@@ -406,6 +406,10 @@
     overflow-y: auto;
 }
 
+.large-icon{
+    font-size: 30px !important;
+}
+
 .online-user-img-container {
     height: 65vh;
     width: 50%;
