@@ -8,10 +8,10 @@ import OnlineGroups from './OnlineGroups'
 import OnlineUsers from './OnlineUsers'
 import { Outlet } from 'react-router'
 
-function MainContainer({ theme, setTheme }) {
+function MainContainer() {
   return (
     <div className="main-container">
-      <SideBar theme={theme} setTheme={setTheme}/>
+      <SideBar/>
       <Outlet/>
       {/* <WelcomePage theme={theme}/> */}
       {/* <WorkArea theme={theme}/> */}

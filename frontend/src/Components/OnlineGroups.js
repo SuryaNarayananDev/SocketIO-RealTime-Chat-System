@@ -3,9 +3,10 @@ import SearchIcon from '@mui/icons-material/Search';
 import UserItem from './pages/UserItem';
 import '../Style/Style.css'
 import GroupItem from './pages/GroupItem';
+import { useSelector } from 'react-redux';
 
-function OnlineGroups({ theme }) {
-
+function OnlineGroups() {
+const theme = useSelector((state) => state.theme.value);
   const [convo ]=useState([
       {
         name:"hi",
