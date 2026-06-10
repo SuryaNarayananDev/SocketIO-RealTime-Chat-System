@@ -2,9 +2,9 @@ import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import UserItem from './pages/UserItem';
 import '../Style/Style.css'
-
-function OnlineUsers({ theme }) {
-
+import {useSelector} from 'react-redux'
+function OnlineUsers() {
+  const themeValue = useSelector((state) => state.theme.value);
   const [convo ]=useState([
       {
         name:"Surya",
@@ -19,24 +19,24 @@ function OnlineUsers({ theme }) {
   ])
 
   return (
-    <div id={theme?"bg-dark":"bg-light"} className='work-area'>
-      <div id={theme?"bg-component-dark":"bg-component-light"} className="work-area-header">
-        <p id={theme?"dark-text":"light-text"} className='online-users-title'>🟢 Online Users</p>
+    <div id={themeValue?"bg-dark":"bg-light"} className='work-area'>
+      <div id={themeValue?"bg-component-dark":"bg-component-light"} className="work-area-header">
+        <p id={themeValue?"dark-text":"light-text"} className='online-users-title'>🟢 Online Users</p>
       </div>
 
-      <div id={theme?"bg-component-dark":"bg-component-light"} className='search-bar'>
+      <div id={themeValue?"bg-component-dark":"bg-component-light"} className='search-bar'>
           <input type='text' placeholder='Search Users' className='search-input'/>
-          <div id={theme?'dark-text':'light-text'}>
+          <div id={themeValue?"dark-text":"light-text"}>
             <SearchIcon  className='large-icon'/>
           </div>
       </div>
       <div style={{display:"flex"}}>
-        <div id={theme?"bg-component-dark":"bg-component-light"} className='online-user-img-container'>
+        <div id={themeValue?"bg-component-dark":"bg-component-light"} className='online-user-img-container'>
           <img className='online-user-img' src={require('../assets/chat.png')} alt="online-logo" />
         </div>
-        <div id={theme?"bg-component-dark":"bg-component-light"} className="users-list">
+        <div id={themeValue?"bg-component-dark":"bg-component-light"} className="users-list">
           {convo.map((user, index) => (
-            <UserItem key={index} theme={theme} props={user} />
+            <UserItem key={index} theme={themeValue} props={user} />
           ))}
         </div>
       </div>

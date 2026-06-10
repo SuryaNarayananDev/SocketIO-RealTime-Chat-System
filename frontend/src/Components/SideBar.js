@@ -10,8 +10,13 @@ import ConversationItem from './ConversationItem';
 import SearchIcon from '@mui/icons-material/Search';
 import SunnyIcon from '@mui/icons-material/Sunny';
 import { useNavigate } from 'react-router';
-function SideBar({ theme, setTheme }) {
+import { useSelector, useDispatch } from 'react-redux';
+import {toggleTheme} from '../features/themeSwtich'
 
+
+function SideBar({ theme, setTheme }) {
+  const dispatch = useDispatch();
+  const themeState = useSelector((state) => state.theme.value);
   const [convo ]=useState([
     {
       name:"Surya",
@@ -62,17 +67,17 @@ function SideBar({ theme, setTheme }) {
   ])
 
   const navigate = useNavigate();
-
+  const themeValue = useSelector((state) => state.theme.value);
   return (
-    <div id={theme?"bg-dark":"bg-light"} className="side-bar">
-        <div  id={theme?'bg-component-dark':'bg-component-light'} className='side-bar-header' >
-          <div id={theme?"dark-text":"light-text"} className='profile-icon'>
+    <div id={themeValue?"bg-dark":"bg-light"} className="side-bar">
+        <div  id={themeValue?'bg-component-dark':'bg-component-light'} className='side-bar-header' >
+          <div id={themeValue?"dark-text":"light-text"} className='profile-icon'>
             <IconButton>
               <AccountCircleIcon className='large-icon' />
             </IconButton>
           </div>
 
-          <div id={theme?"dark-text":"light-text"} className='header-icons'>
+          <div id={themeValue?"dark-text":"light-text"} className='header-icons'>
             <IconButton onClick={()=>{navigate('users')}}>
               <PersonAddIcon className='large-icon'/>
             </IconButton>
@@ -82,23 +87,22 @@ function SideBar({ theme, setTheme }) {
             <IconButton onClick={()=>{navigate('create-group')}}>
               <AddBoxIcon className='large-icon'/>
             </IconButton>
-            <IconButton onClick={()=>{setTheme(!theme)}}>
-              {theme?<SunnyIcon/>:<DarkModeIcon/>}
-              {/* <DarkModeIcon className='large-icon'/> */}
+            <IconButton onClick={()=>{dispatch(toggleTheme())}}>
+              {themeState?<SunnyIcon/>:<DarkModeIcon/>}
             </IconButton>
           </div>
         </div>
 
-        <div id={theme?"bg-component-dark":"bg-component-light"} className='search-bar'>
+        <div id={themeValue?"bg-component-dark":"bg-component-light"} className='search-bar'>
           <input type='text' placeholder='Search' className='search-input'/>
-          <div id={theme?'dark-text':'light-text'}>
+          <div id={themeValue?'dark-text':'light-text'}>
             <SearchIcon  className='large-icon'/>
           </div>
         </div>
         
-        <div id={theme?"bg-component-dark":"bg-component-light"} className='conversations'>
+        <div id={themeValue?"bg-component-dark":"bg-component-light"} className='conversations'>
           {convo.map((conversation)=>{
-            return <ConversationItem key={conversation.name} theme={theme} props={conversation}/>
+            return <ConversationItem key={conversation.name} theme={themeValue} props={conversation}/>
             
           })}
         </div>
