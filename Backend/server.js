@@ -1,7 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-
+const UserRoutes = require('./Routes/UserRoutes');
 dotenv.config();
 
 const app = express();
@@ -22,10 +22,13 @@ async function connectDB() {
 
 async function startServer() {
     await connectDB();
+    app.use(express.json());
+    app.use('/api/user', UserRoutes);
 
     app.listen(process.env.PORT, () => {
         console.log(`Server running on port ${process.env.PORT}`);
-    });
+    });    
+
 }
 
 startServer();
