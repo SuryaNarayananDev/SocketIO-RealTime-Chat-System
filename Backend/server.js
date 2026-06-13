@@ -6,9 +6,6 @@ dotenv.config();
 
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send("Stupid server is running");
-});
 
 async function connectDB() {
     try {
@@ -23,6 +20,11 @@ async function connectDB() {
 async function startServer() {
     await connectDB();
     app.use(express.json());
+    
+    app.get('/', (req, res) => {
+        res.send("Stupid server is running");
+    });
+    
     app.use('/api/user', UserRoutes);
 
     app.listen(process.env.PORT, () => {

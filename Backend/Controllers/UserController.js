@@ -1,5 +1,5 @@
 const UserModel = require("../models/userModel");
-
+const bcrypt = require("bcryptjs");
 // Signup Controller
 const SignupController = async (req, res) => {
     try {
@@ -37,7 +37,7 @@ const SignupController = async (req, res) => {
         const user = await UserModel.create({
             name,
             email,
-            password
+            password : await bcrypt.hash(password, 10),
         });
 
         return res.status(201).json({
@@ -72,12 +72,22 @@ const SigninController = async (req, res) => {
         }
 
         // Find user
-        const user = await UserModel.findOne({ email, password });
+        const user = await UserModel.findOne({ email });
 
         if (!user) {
             return res.status(400).json({
                 status: "invalid",
-                message: "Invalid email or password"
+                message: "Invalid email"
+            });
+        }
+
+        // Check password
+        const isPasswordValid = await bcrypt.compare(password, user.password);
+
+        if (!isPasswordValid) {
+            return res.status(400).json({
+                status: "invalid",
+                message: "Invalid Password"
             });
         }
 
